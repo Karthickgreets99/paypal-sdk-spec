@@ -38,14 +38,15 @@ public protocol PaymentDelegate {
 #### Order actions
 
 ```swift
-// The action vended to merchant when the SDK creates an order
-// This allows merchants to pass in either an Order object (for client-side create order) or orderID (for server-side create order)
-public class CreateOrderAction {
+// Input required from merchant when the SDK creates an order
+// This allows merchants to pass in either an Order object (for client-side create order) or orderID (for server-side create order) or an error (for server-side create order failure)
+public enum CreateOrderInput {
     // Client-side
-    public func create(order: Order, completion: (String) -> Void)
-
+    case order(Order)
     // Server-side
-    public func set(orderID: String)
+    case orderID(String)
+    // Server-side (when there is failure in creating an order)
+    case failure(Error)
 }
 
 // The action vended to merchant after buyer approval
