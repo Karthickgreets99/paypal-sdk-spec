@@ -16,13 +16,7 @@ public struct CoreConfig {
 
 ```swift
 // API client that handles network requests
-public class Client {
-    // Parent class containing shared properties/functions for all payment method clients (CardClient, PayPalClient, etc.)
-    // In the future if we support things like createOrder client-side (which applies for every payment method), they can be in here.
-
-    // <Not implemented>
-    public func createOrder(_ order: Order, completion: (Result<OrderData, ErrorData>) -> Void)
-}
+public class Client {}
 ```
 
 #### Callbacks
@@ -40,24 +34,15 @@ public protocol PaymentDelegate {
 
 ```swift
 // The action vended to merchant when the SDK creates an order
-// This allows merchants to pass in an Order (request the SDK to create order) or an orderID (if the order was created from merchants' server)
+// This allows merchants to pass in an orderID (created from merchants' server)
 public class CreateOrderAction {
-    // <Not implemented> Client-side
-    public func create(order: Order, completion: (String?) -> Void)
-
     // Server-side
     public func completion(orderID: String?)
 }
 
 // The action vended to merchant after buyer approval
 // This allows merchants to capture/authorize orders client-side
-public class ApprovalAction {
-    // <Not implemented> Client-side authorize
-    public func authorize(orderId: String, completion: (Result<OrderData, ErrorData>) -> Void) {}
-
-    // <Not implemented> Client-side capture
-    public func capture(orderId: String, completion: (Result<OrderData, ErrorData>) -> Void) {}
-}
+public class ApprovalAction {}
 ```
 
 #### Models
