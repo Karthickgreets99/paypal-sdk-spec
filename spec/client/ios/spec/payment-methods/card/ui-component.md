@@ -15,8 +15,12 @@ public class CardFields: PaymentUIComponent {
     var cardNumberField: UITextField
     var cvvField: UITextField
     var expiryField: UITextField
-    var submitButton: UIButton
+    var submitButton: UIButton?
 
     var type: Type = .single
+
+    public init(config: CoreConfig, type: Type = .single, submitButton: UIButton?)
+
+    func submit(card: Card)
 }
 ```

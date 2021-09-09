@@ -23,7 +23,7 @@ class MerchantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Client-side create order.
+        // <Not implemented> Client-side create order.
         // Not necessary if the order is created from server-side
         let order = Order(
             intent: .authorize
@@ -31,12 +31,12 @@ class MerchantViewController: UIViewController {
         )
         cardClient.createOrder(order) { result in
             switch result {
-            case .success(let orderData):
+            case .success(let data):
                 // Save orderID here
-                print(orderData.orderID)
-            case .failure(let errorData):
+                print(data.orderID)
+            case .failure(let data):
                 // Handle error here
-                print(errorData.correlationID)
+                print(data.error)
             }
         }
     }
@@ -57,21 +57,21 @@ class MerchantViewController: UIViewController {
 
                 switch data.intent {
                 case .authorize:
-                    // Client-side
+                    // <Not implemented> Client-side
                     action.authorize() { result in }
 
                     // OR Server-side
                     Network.post("merchant/api/to/authorize/order", data.orderID) { _ in }
                 case .capture:
-                    // Client-side
+                    // <Not implemented> Client-side
                     action.capture() { result in }
 
                     // OR Server-side
                     Network.post("merchant/api/to/capture/order", data.orderID) { _ in }
                 }
-            case let .failure(error):
+            case let .failure(data):
                 // Handle error here
-                print(error.correlationID)
+                print(data.error)
             }
         }
     }
@@ -87,7 +87,13 @@ class MerchantViewController: UIViewController {
 
     // Initialize CoreConfig and CardFields UI component
     let config = CoreConfig(clientID: "ABCD1234", environment: .sandbox)
-    lazy var cardFields: CardFields = { CardFields(config: config, type: .multi) }()
+    lazy var cardFields: CardFields = { 
+        // CardFields with built-in submit button
+        CardFields(config: config, type: .multi) 
+
+        // OR CardFields with your submit button
+        CardFields(config: config, type: .multi, submitButton: <yourUIButton>)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,23 +105,23 @@ class MerchantViewController: UIViewController {
 
 extension MerchantViewController: PaymentDelegate {
 
-    func createOrder(_ sender: PaymentUIComponent, completion: (CreateOrderInput) -> Void) {
+    func createOrder(_ sender: PaymentUIComponent, action: CreateOrderAction) {
         // The SDK is requesting an Order or orderID to create the order
 
-        // Client-side
+        // <Not implemented> Client-side
         let order = Order(
             intent: .authorize
             purchaseUnits: [PurchaseUnit(amount: Amount(currencyCode: .usd, value: 5))]
         )
-        completion(.order(order))
+        action.create(order: order)
 
         // OR Server-side
         Network.post("merchant/api/to/create/order") { result in
             switch result {
             case .success(let orderID):
-                completion(.orderID(orderID))
-            case .failure(let error):
-                completion(.failure(error))
+                action.completion(orderID)
+            case .failure:
+                action.completion(nil)
             }
         }
     }
@@ -125,13 +131,13 @@ extension MerchantViewController: PaymentDelegate {
 
         switch data.intent {
         case .authorize:
-            // Client-side
+            // <Not implemented> Client-side
             action.authorize() { result in }
 
             // OR Server-side
             Network.post("merchant/api/to/authorize/order", data.orderID) { _ in }
         case .capture:
-            // Client-side
+            // <Not implemented> Client-side
             action.capture() { result in }
 
             // OR Server-side
@@ -141,7 +147,7 @@ extension MerchantViewController: PaymentDelegate {
 
     func onError(_ sender: PaymentUIComponent, data: ErrorData) {
         // The SDK encountered an error. You can handle the error here.
-        print(error.correlationID)
+        print(data.error)
     }
 }
 ```

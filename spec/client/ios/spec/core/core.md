@@ -20,7 +20,8 @@ public class Client {
     // Parent class containing shared properties/functions for all payment method clients (CardClient, PayPalClient, etc.)
     // In the future if we support things like createOrder client-side (which applies for every payment method), they can be in here.
 
-    // public func createOrder(_ order: Order, completion: (Result<OrderData, ErrorData>) -> Void)
+    // <Not implemented>
+    public func createOrder(_ order: Order, completion: (Result<OrderData, ErrorData>) -> Void)
 }
 ```
 
@@ -29,7 +30,7 @@ public class Client {
 ```swift
 // createOrder/onApprove/onError callbacks for our UI components
 public protocol PaymentDelegate {
-    func createOrder(_ sender: PaymentUIComponent, completion: (CreateOrderInput) -> Void)
+    func createOrder(_ sender: PaymentUIComponent, action: CreateOrderAction)
     func onApprove(_ sender: PaymentUIComponent, data: OrderData, action: ApprovalAction)
     func onError(_ sender: PaymentUIComponent, data: ErrorData)
 }
@@ -38,24 +39,23 @@ public protocol PaymentDelegate {
 #### Order actions
 
 ```swift
-// Input required from merchant when the SDK creates an order
-// This allows merchants to pass in either an Order object (for client-side create order) or orderID (for server-side create order) or an error (for server-side create order failure)
-public enum CreateOrderInput {
-    // Client-side
-    case order(Order)
+// The action vended to merchant when the SDK creates an order
+// This allows merchants to pass in an Order (request the SDK to create order) or an orderID (if the order was created from merchants' server)
+public class CreateOrderAction {
+    // <Not implemented> Client-side
+    public func create(order: Order, completion: (String?) -> Void)
+
     // Server-side
-    case orderID(String)
-    // Server-side (when there is failure in creating an order)
-    case failure(Error)
+    public func completion(orderID: String?)
 }
 
 // The action vended to merchant after buyer approval
 // This allows merchants to capture/authorize orders client-side
 public class ApprovalAction {
-    // Client-side authorize
+    // <Not implemented> Client-side authorize
     public func authorize(orderId: String, completion: (Result<OrderData, ErrorData>) -> Void) {}
 
-    // Client-side capture
+    // <Not implemented> Client-side capture
     public func capture(orderId: String, completion: (Result<OrderData, ErrorData>) -> Void) {}
 }
 ```
@@ -68,12 +68,6 @@ public class Order {
     var purchaseUnits: [PurchaseUnit]
 }
 
-public struct Card: PaymentSource {
-    var cardNumber: String
-    var cvv: String
-    var expiry: String
-}
-
 public class OrderData {
     var orderID: String
     var status: OrderStatus
@@ -81,10 +75,17 @@ public class OrderData {
 }
 
 public class ErrorData {
-    var error: Error
-    var description: String
-    var correlationID: String
-    var orderID: String
+    var error: SDKError
+    var orderID: String?
     var sdkVersion: String
+}
+
+public enum SDKError: Error {
+    case networkError(metaData: [String: Any], correlationID: String)
+    case decodingError
+    ...
+
+    var errorCode: Int
+    var errorUserInfo: [String: Any]
 }
 ```

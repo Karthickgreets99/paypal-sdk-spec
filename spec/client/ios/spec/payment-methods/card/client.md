@@ -13,3 +13,13 @@ public class CardClient: Client {
     public func completeOrder(_ order: Order, card: Card, completion: (Result<OrderData, ErrorData>) -> Void)
 }
 ```
+
+#### Models
+
+```swift
+public struct Card: PaymentSource {
+    var cardNumber: String
+    var cvv: String
+    var expiry: String
+}
+```
