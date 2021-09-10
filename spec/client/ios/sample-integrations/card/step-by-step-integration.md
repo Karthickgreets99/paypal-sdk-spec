@@ -52,7 +52,7 @@ let card = Card(
     expiry: <card_expiry>
 )
 
-// Approve the order with the orderID of the order you created in your server in step 3
+// Approve order with the orderID of the order you created in your server in step 3
 cardClient.approveOrder(orderID: <orderID>, card: card) { result in
     switch result {
     case let .success(data):
