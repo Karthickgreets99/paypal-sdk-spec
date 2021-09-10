@@ -40,7 +40,7 @@ curl --location --request POST 'https://api.sandbox.paypal.com/v2/checkout/order
 }'
 ```
 
-#### 4. Approve an order with buyer's card info and authorize/capture the order
+#### 4. Approve order with buyer's card info and authorize/capture the order
 
 **Client**
 
@@ -53,9 +53,9 @@ let card = Card(
 )
 
 // Approve the order with the orderID of the order you created in your server in step 3
-cardClient.approveOrder(orderID: <orderID>, card: card) {
+cardClient.approveOrder(orderID: <orderID>, card: card) { result in
     switch result {
-    case let .success(data, action):
+    case let .success(data):
         // Authorize/capture the order
         switch data.intent {
         case .authorize:
