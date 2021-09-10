@@ -1,4 +1,4 @@
-## Step-by-step integration
+## Step-by-step card integration
 
 ### Basic server-side integration
 
