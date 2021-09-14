@@ -10,6 +10,13 @@
 import CardPayment
 ```
 
+```kotlin
+import com.paypal.android.core.CoreConfig
+import com.paypal.android.card.CardClient
+```
+Note: We most likely can omit the import step from the docs. Android devs will use Android Studio's
+auto import tool.
+
 #### 2. Initialize CoreConfig and CardClient
 
 **Client**
@@ -17,6 +24,14 @@ import CardPayment
 ```swift
 let config = CoreConfig(clientID: <your_clientID>, environment: .sandbox)
 let cardClient = CardClient(config: config)
+```
+
+```kotlin
+val config = CoreConfig(
+    clientID = [your_clientID],
+    environment = Environment.SANDBOX
+)
+val cardClient = CardClient(config)
 ```
 
 #### 3. Create an order in your server
@@ -66,6 +81,35 @@ cardClient.approveOrder(orderID: <orderID>, card: card) { result in
     case let .failure(data):
         // Handle error
         print(data.error)
+    }
+}
+```
+
+```kotlin
+// Create a Card object from buyer's input
+val card = Card(
+    number = [card_number],
+    cvv = [card_cvv],
+    expiry = [card_expiry]
+)
+
+// Approve order with the orderId of the order you created in your server in step 3
+cardClient.approveOrder(orderID = [order_id], card = card) { result ->
+    when (result) {
+        is Success -> {
+            when (result.data) {
+                Authorize -> {
+                    // Authorize the order in your server with order ID `data.orderID`
+                }
+                Capture -> {
+                    // Capture the order in your server with order ID `data.orderID`
+                }
+            }
+        }
+        is Failure -> {
+            // Handle error
+            Log.d("CardError", data.error)
+        }
     }
 }
 ```

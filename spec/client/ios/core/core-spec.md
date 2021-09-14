@@ -10,6 +10,13 @@ public struct CoreConfig {
 }
 ```
 
+```kotlin
+data class CoreConfig(
+    val clientID: String,
+    val environment: Environment
+)
+```
+
 #### Models
 
 ```swift
@@ -37,5 +44,49 @@ public enum SDKError: Error {
 
     var errorCode: Int
     var errorUserInfo: [String: Any]
+}
+```
+
+```kotlin
+sealed class Result {
+    class Success(
+        val orderData: OrderData,
+    ) : Result()
+
+    class Failure(
+        val errorData: ErrorData
+    ) : Result()
+}
+
+data class OrderData(
+    val orderID: String,
+    val status: OrderStatus,
+    val paymentSource: PaymentSource?
+)
+
+data class ErrorData(
+    val error: SDKError,
+    val orderID: String?,
+    val sdkVersion: String
+)
+
+sealed class SdkError(
+    val errorCode: Int,
+    val errorUserInfo: Map<String, Any>
+) {
+
+    class NetworkError(
+        errorCode: Int,
+        errorUserInfo: Map<String, Any>,
+        val metadata: Int,
+        val correlationID: String
+    ) : SdkError(errorCode, errorUserInfo)
+
+    class DecodingError(
+        errorCode: Int,
+        errorUserInfo: Map<String, Any>,
+    ) : SdkError(errorCode, errorUserInfo)
+
+    ...
 }
 ```
