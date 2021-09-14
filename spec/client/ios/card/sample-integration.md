@@ -10,12 +10,13 @@
 import CardPayment
 ```
 
-```kotlin
-import com.paypal.android.core.CoreConfig
-import com.paypal.android.card.CardClient
+Add dependencies to app module's build.gradle file.
+```groovy
+dependencies {
+    implementation 'com.paypal.android:card:1.0.0'
+    implementation 'com.paypal.android:paypal:1.0.0'
+}
 ```
-Note: We most likely can omit the import step from the docs. Android devs will use Android Studio's
-auto import tool.
 
 #### 2. Initialize CoreConfig and CardClient
 

@@ -38,6 +38,6 @@ public struct Card: PaymentSource {
 data class Card(
     val cardNumber: String,
     val cvv: String,
-    var expiry: String
+    val expiry: String
 )
 ```
