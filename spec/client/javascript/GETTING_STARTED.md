@@ -3,12 +3,8 @@
 Welcome to PayPal's JS SDK getting started guide. Learn how to accept payments on your website using card, PayPal, Venmo, and alternative payment methods.
 
 ## Browser Support
- - Chrome latest
- - Firefox latest
- - Safari latest
- - Opera latest
- - Edge latest
- - Internet Explorer version 11+
+
+See [Support](./standards/support.md')
 
 ## UI Frameworks
  - React
@@ -29,7 +25,7 @@ There are two ways you can load the client side SDK:
 
 Style:
 ```html
-<script src="www.paypal.com?authToken=<AUTH_TOKEN>?client-id=YOUR_CLIENT_ID" />
+<script src="www.paypal.com?client-id=YOUR_CLIENT_ID" />
 ```
 
 2. You can install as a module from npm.

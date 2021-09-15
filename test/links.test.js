@@ -9,13 +9,10 @@ for (const path of findAllFiles(SPEC_ROOT, SPEC_EXTENSION)) {
         const node = markdownParseFile(path);
 
         for (const href of getAllLinks(node)) {
-
             if (href.indexOf('.') === 0 || href.indexOf('/') === 0) {
                 const [ fullPath, hash ] = join(dirname(path), href).split('#');
 
-
                 if (!existsSync(fullPath)) {
-                    console.log({href, path, fullPath, hash});
                     throw new Error(`File does not exist: ${ fullPath }`);
                 }
 
