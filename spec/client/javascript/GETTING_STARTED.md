@@ -23,34 +23,35 @@ There are two ways you can load the client side SDK:
 
 1. You can add it in a script tag on the page.
 
-Style:
+Sample Code:
 ```html
-<script src="www.paypal.com?client-id=YOUR_CLIENT_ID" />
+<script src="https://www.paypal.com/sdk/js?client-id=<YOUR_CLIENT_ID>" />
+```
+
+```js
+window.paypal.Buttons().render('#paypal-buttons-container');
 ```
 
 2. You can install as a module from npm.
 
+Sample Code:
 ```sh
 npm install @paypal/paypal-js
 ```
 
 ```js
 import { loadScript } from "paypal";
-```
 
-## Sample Code
-
-```js
 const configuration = {
   clientID: '<YOUR_CLIENT_ID>',
 };
 
 try {
-  await loadScript(configuration)
+  const paypal = await loadScript(configuration)
 } catch(error) {
   console.error(error.code);
 }
 
-window.paypal.Buttons().render('#paypal-buttons-container');
+paypal.Buttons().render('#paypal-buttons-container');
 ```
-<!-- TODO: - link to error spec, once complete -->
+
