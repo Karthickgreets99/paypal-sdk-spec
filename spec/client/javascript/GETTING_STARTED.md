@@ -4,7 +4,7 @@ Welcome to PayPal's JS SDK getting started guide. Learn how to accept payments o
 
 ## Browser Support
 
-See [Support](./standards/support.md')
+See [Support](./standards/support.md)
 
 ## UI Frameworks
  - React
