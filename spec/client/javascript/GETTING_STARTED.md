@@ -49,9 +49,20 @@ const configuration = {
 try {
   const paypal = await loadScript(configuration)
 } catch(error) {
-  console.error(error.code);
+  console.error(error);
 }
 
 paypal.Buttons().render('#paypal-buttons-container');
 ```
+
+## Validation
+Once the above code has been run you should see the `#paypal-buttons-container` populated with an iframe containing the button stack. Clicking on a button will launch a popup window for the checkout flow.
+
+## Troubleshooting
+If you do not see visibile buttons on the screen then ensure your clientID is correct and that you are loading the sdk script from the proper environment.
+
+Typical error cases are:
+1. You are using the wrong clientID or you are using a clientID in the incorrect environment
+2. You misspelled or made a mistakes in query params. For example you may have made a typo in a component name
+3. Server side error generating the script file which would require remediation by the engineering team.
 
