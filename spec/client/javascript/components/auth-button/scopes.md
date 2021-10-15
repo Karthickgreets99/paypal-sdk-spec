@@ -63,4 +63,4 @@ The following table shows how user attributes map to scopes.
 <td><code>address</code></td>
 </tr>
 </tbody>
-</table></div>
+</table>
