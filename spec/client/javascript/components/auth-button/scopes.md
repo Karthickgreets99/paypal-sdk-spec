@@ -13,54 +13,13 @@ paypal.AuthButton({
 
 The following table shows how user attributes map to scopes.
 
-<table>
-<thead>
-<tr>
-<th>User attribute</th>
-<th>Category</th>
-<th>Scope value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>None</td>
-<td>Basic Authentication</td>
-<td><code>openid</code></td>
-</tr>
-<tr>
-<td>Full name</td>
-<td>Personal Information</td>
-<td><code>profile</code></td>
-</tr>
-<tr>
-<td>Email address</td>
-<td>Address Information</td>
-<td><code>email</code></td>
-</tr>
-<tr>
-<td>Street address</td>
-<td>Address Information</td>
-<td><code>address</code></td>
-</tr>
-<tr>
-<td>City</td>
-<td>Address Information</td>
-<td><code>address</code></td>
-</tr>
-<tr>
-<td>State</td>
-<td>Address Information</td>
-<td><code>address</code></td>
-</tr>
-<tr>
-<td>Country</td>
-<td>Address Information</td>
-<td><code>address</code></td>
-</tr>
-<tr>
-<td>Zip code</td>
-<td>Address Information</td>
-<td><code>address</code></td>
-</tr>
-</tbody>
-</table>
+| User Attribute | Category | Scope Value |
+| -------------- | -------- | ----------- |
+| None | Basic Authentication | `openid` |
+| Full Name | Personal Information | `profile` |
+| Email address | Address Information | `email` |
+| Street address | Address Information | `address` |
+| City | Address Information | `address` |
+| State | Address Information | `address` |
+| Country | Address Information | `address` |
+| Zip code | Address Information | `address` |

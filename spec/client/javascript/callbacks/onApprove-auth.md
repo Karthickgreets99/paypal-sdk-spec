@@ -29,7 +29,7 @@ const onApprove = (data, actions) => {
 type OnApprove = (
     data : OnApproveData,
     actions : OnApproveActions
-) => undefined | Promise<undefined>
+) => void | Promise<void>
 
 type OnApproveData = {
     authCode : string,
