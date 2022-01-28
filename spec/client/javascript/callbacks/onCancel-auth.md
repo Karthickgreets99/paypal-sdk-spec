@@ -20,10 +20,11 @@ const onCancel = (data) => {
 type OnCancel = (
     data : OnCancelData,
     actions : OnCancelActions
-) => undefined | Promise<undefined>
-// Cancel Data will have consent denied and based on that partner can show appropriate screen
+) => void | Promise<void>
+
+// Cancel Data will have consent denied object and based on that partner can show appropriate screen for user.
 type OnCancelData = {
-    // Example of the consent denied  {"error_code" : consent_denied}
+    // consent denied object  {"error_code" : consent_denied}
 };
 // Based on cancel data partner can  guide the next action for the user.
 type OnCancelActions = {

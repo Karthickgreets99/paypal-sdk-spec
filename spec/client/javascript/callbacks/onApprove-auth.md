@@ -37,6 +37,6 @@ type OnApproveData = {
 };
 
 type OnApproveActions = {
-
+// partner can take appropriate action based on consent approved.
 };
 ```
