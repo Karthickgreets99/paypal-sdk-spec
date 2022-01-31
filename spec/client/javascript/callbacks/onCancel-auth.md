@@ -16,16 +16,18 @@ const onCancel = (data) => {
 
 ## Types
 
-```javascript
+```typescript
 type OnCancel = (
     data : OnCancelData,
     actions : OnCancelActions
 ) => void | Promise<void>
 
+// __TODO__
 // Cancel Data will have consent denied object and based on that partner can show appropriate screen for user.
 type OnCancelData = {
     // consent denied object  {"error_code" : consent_denied}
 };
+// __TODO__
 // Based on cancel data partner can  guide the next action for the user.
 type OnCancelActions = {
     // appropriate action for cancel.

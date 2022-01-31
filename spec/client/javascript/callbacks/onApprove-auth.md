@@ -25,7 +25,7 @@ const onApprove = (data, actions) => {
 
 ## Types
 
-```javascript
+```typescript
 type OnApprove = (
     data : OnApproveData,
     actions : OnApproveActions
@@ -37,6 +37,7 @@ type OnApproveData = {
 };
 
 type OnApproveActions = {
+// __TODO__
 // partner can take appropriate action based on consent approved.
 };
 ```

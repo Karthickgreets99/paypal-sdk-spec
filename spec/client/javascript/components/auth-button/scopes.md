@@ -13,13 +13,13 @@ paypal.AuthButton({
 
 The following table shows how user attributes map to scopes.
 
-| User Attribute | Category | Scope Value |
-| -------------- | -------- | ----------- |
-| None | Basic Authentication | `openid` |
-| Full Name | Personal Information | `profile` |
-| Email address | Address Information | `email` |
-| Street address | Address Information | `address` |
-| City | Address Information | `address` |
-| State | Address Information | `address` |
-| Country | Address Information | `address` |
-| Zip code | Address Information | `address` |
+| User Attribute | Category             | Scope Value |
+| -------------- | -------------------- | ----------- |
+| None           | Basic Authentication | `openid`    |
+| Full Name      | Personal Information | `profile`   |
+| Email address  | Address Information  | `email`     | 
+| Street address | Address Information  | `address`   |
+| City           | Address Information  | `address`   |
+| State          | Address Information  | `address`   |
+| Country        | Address Information  | `address`   |
+| Zip code       | Address Information  | `address`   |
