@@ -25,7 +25,16 @@ type OnCancel = (
 // __TODO__
 // Cancel Data will have consent denied object and based on that partner can show appropriate screen for user.
 type OnCancelData = {
-    // consent denied object  {"error_code" : consent_denied}
+    // data.errorCode - an enum string 
+    // data.errorMessage - a human readable string 
+    switch (data.errorCode) { 
+        case paypal.AuthButton.errors.CONSENT_DENIED: 
+        // handle consent denied case 
+        case paypal.AuthButton.errors.OTHER_ERROR: 
+        // handle some other other error 
+        case default: 
+        // handle all other cases
+         }
 };
 // __TODO__
 // Based on cancel data partner can  guide the next action for the user.
