@@ -27,14 +27,15 @@ type OnCancel = (
 type OnCancelData = {
     // data.errorCode - an enum string 
     // data.errorMessage - a human readable string 
-    switch (data.errorCode) { 
-        case paypal.AuthButton.errors.CONSENT_DENIED: 
-        // handle consent denied case 
-        case paypal.AuthButton.errors.OTHER_ERROR: 
-        // handle some other other error 
-        case default: 
-        // handle all other cases
-         }
+    // sample use case
+    // switch (data.errorCode) { 
+    //     case paypal.AuthButton.errors.CONSENT_DENIED: 
+    //     // handle consent denied case 
+    //     case paypal.AuthButton.errors.OTHER_ERROR: 
+    //     // handle some other other error 
+    //     case default: 
+    //     // handle all other cases
+    //      }
 };
 // __TODO__
 // Based on cancel data partner can  guide the next action for the user.
